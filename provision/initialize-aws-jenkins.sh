@@ -14,6 +14,11 @@ JENKINS_SECURITY_GROUP=jenkins-${USERNAME}
 echo ""
 echo "Setup will run full setup of AWS instance with jenkins"
 echo ""
+echo "Setting up the directory"
+if [ -e $INSTANCE_DIR ]; then
+	mkdir ./ec2_instance
+fi;
+INSTANCE_DIR=./ec2_instance
 
 echo "Checking security group"
 if [ ! -e ./ec2_instance/security-group-id.txt ]; then
@@ -33,7 +38,7 @@ create-key-pair
 echo ""
 echo "Creating EC2 instance."
 if [ ! -e ./ec2_instance/instance-id.txt ]; then
-    create-ec2-instance ami-1a962263 ${SECURITY_GROUP_ID} ${THISDIR}/bootstrap-jenkins.sh ${PEM_NAME}
+    create-ec2-instance ami-e7d6c983 ${SECURITY_GROUP_ID} ${THISDIR}/bootstrap-jenkins.sh ${PEM_NAME}
     echo "Created instance..."
 fi
 echo "Applying restrictions: "

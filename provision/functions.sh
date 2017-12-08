@@ -1,7 +1,7 @@
 function create-key-pair(){
-    if [ ! -e ${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem ]; then
-        aws ec2 create-key-pair --key-name ${SECURITY_GROUP_NAME} --query 'KeyMaterial' --output text > ${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem
-        chmod 400 ${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem
+    if [ ! -e ${INSTANCE_DIR}/${PEM_NAME}.pem ]; then
+        aws ec2 create-key-pair --key-name ${PEM_NAME} --query 'KeyMaterial' --output text > ${INSTANCE_DIR}/${PEM_NAME}.pem
+        chmod 400 ${INSTANCE_DIR}/${PEM_NAME}.pem
         echo "Sucessfully created keypair"
     else
         echo "Keypair exists, moving on..."
